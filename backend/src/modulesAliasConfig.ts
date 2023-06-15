@@ -6,4 +6,5 @@ addAliases({
     "@routes": resolve(__dirname, "routes"),
     "@controllers": resolve(__dirname, "controllers"),
     "@helpers": resolve(__dirname, "helpers"),
+    "@services": resolve(__dirname, "services"),
 });

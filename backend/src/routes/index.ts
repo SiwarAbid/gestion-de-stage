@@ -6,6 +6,8 @@ import swaggerUI from "swagger-ui-express";
 import { PORT, HOST } from "@root";
 
 import { router } from "@routes/example";
+import { routerUser } from "@routes/user/userRouter";
+//import pool from "../Database/index";
 
 export default (app: Application) => {
     const options = {
@@ -38,4 +40,38 @@ export default (app: Application) => {
     });
 
     app.use("/api/v1", [router]);
+    app.use("/", [routerUser]);
+
+    // app.post("/user", async (req, res) => {
+    //     try {
+    //         const user = {
+    //             id: 4,
+    //             username: "testupperCase",
+    //             email: "test4@gamil.com",
+    //             password: "0000",
+    //             userphone: 123,
+    //             role: "satagiaire",
+    //             status: null,
+    //             isAdmin: false
+    //         };
+    //         console.log(req.body);
+    //         const newUser = await pool.query(
+    //             "INSERT INTO users (id, username, email ,password, userphone, role, status, isadmin ) VALUES ($1, $2, $3 , $4 , $5 , $6 , $7 , $8)",
+    //             [
+    //                 user.id,
+    //                 user.username,
+    //                 user.email,
+    //                 user.password,
+    //                 user.userphone,
+    //                 user.role,
+    //                 user.status,
+    //                 user.isAdmin
+    //             ]
+    //         );
+
+    //         res.json(newUser);
+    //     } catch (err) {
+    //         console.error(err.message);
+    //     }
+    // });
 };

@@ -3,7 +3,7 @@ import pool from "../Database/index"; // Importez le module de connexion à la b
 export const get_all_user = async () => {
     try {
         const result = await pool.query("SELECT * FROM users");
-        console.log(result.rows);
+        // console.log(result.rows);
         return result.rows;
     } catch (error) {
         console.error(error);
@@ -13,7 +13,7 @@ export const get_all_user = async () => {
 export const get_user = async (id: number) => {
     try {
         const result = await pool.query(`SELECT * FROM users WHERE id=${id}`);
-        console.log(result.rows);
+        //console.log(result.rows);
         return result;
     } catch (error) {
         console.error(error);
@@ -35,8 +35,8 @@ export const add_user = async (user: User) => {
     try {
         const sql = `INSERT INTO users(id, username, email, password, userphone, role, status, isadmin)
         VALUES (${user.id}, ${user.username}, ${user.email} , ${user.password} , ${user.userphone} , ${user.role} , ${user.status} , ${user.isAdmin});`;
-        console.log("user log:", user);
-        console.log("sql log:", sql);
+        // console.log("user log:", user);
+        // console.log("sql log:", sql);
         const result = await pool.query(
             sql
             //     (error, response) => {

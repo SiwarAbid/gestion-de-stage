@@ -9,7 +9,11 @@
         "rootDir": ".",
         "outDir": "build",
         "removeComments": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "types": [
+      "cors",
+      // other type declarations
+    ]
     },
     "include": ["src/**/*", "__tests__/**/*"],
     "extends": "./tsconfig.paths.json"
