@@ -7,14 +7,13 @@ import FieldExperience from "./FormComponents/FieldExperience";
 import FieldProjet from "./FormComponents/FieldProjet";
 import FieldSkill from "./FormComponents/FieldSkill";
 import FieldDone from "./FormComponents/FieldDone";
-import userDataReducer, { 
-initialState,
+import userDataReducer, {
+  initialState,
 } from "../initialStates/userInitialState";
 
 const MultiStepForm: React.FC = () => {
-  
   const [userData, dispatch] = React.useReducer(userDataReducer, initialState);
-  const [errors, setErrors] = useState<Record<string, string | boolean >>({});
+  //const [errors, setErrors] = useState<Record<string, string | boolean>>({});
   console.log("userData: ", userData);
 
   const [step, setStep] = useState<number>(1);
@@ -23,12 +22,9 @@ const MultiStepForm: React.FC = () => {
 
   const nextStep = () => {
     if (step === 1) {
-
       // Valider les champs du composant FieldContact
-      
-
     }
-    setErrors({}); // Réinitialiser l'erreur si tout est valide
+    //setErrors({}); // Réinitialiser l'erreur si tout est valide
     setStep(step + 1);
     if (step === 2) addFormation();
     else if (step === 3) addExperience();
@@ -44,7 +40,7 @@ const MultiStepForm: React.FC = () => {
 
     /****** handleChange() ******/
     const { name, value } = event.target;
-    setErrors({ ...errors, [name]: value ? false : true });
+   // setErrors({ ...errors, name: value.length <= 3 ? false : true });
 
     //Valider les données:
 
@@ -62,17 +58,22 @@ const MultiStepForm: React.FC = () => {
     }
   };
 
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Vous pouvez valider les données ici avant de les enregistrer dans l'état userData
     nextStep();
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement> ) => {
+
+
+
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     // setValues({ ...userData, [name]: value });
-    setErrors({ ...errors, [name]: value ? false : true });
+    console.log("valuee", value);
+
+    //setErrors({ ...errors, [name]: value ? false : true });
     //  console.log("e.target::", e.target);//<input type="text" name="name" placeholder="Nom Complet" required />
     //  console.log("e.target.value::", e.target.value);//Ben Abid Siwar
 
@@ -92,6 +93,13 @@ const MultiStepForm: React.FC = () => {
     }
   };
 
+
+
+
+
+
+
+  
   const addFormation = () => {
     console.log("formation::", userData.formation);
     const newItem = userData.formation;
@@ -140,6 +148,11 @@ const MultiStepForm: React.FC = () => {
     else if (step == 4) addProjet();
   };
 
+  const [focused, setFocused] = useState(false);
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    setFocused(true);
+  };
+
   return (
     <div id="msform">
       <ProgressBar step={step} />
@@ -148,7 +161,9 @@ const MultiStepForm: React.FC = () => {
         nextStep={nextStep}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        errors={errors}
+        //errors={errors}
+        handleFocus={handleFocus}
+        focused={focused}
       />
       <FieldFormation
         step={step}
@@ -159,7 +174,7 @@ const MultiStepForm: React.FC = () => {
         divCount={divCount}
         handleSubmit={handleSubmit}
         ajouterDiv={ajouterDiv}
-        errors={errors}
+        //errors={errors}
       />
       <FieldExperience
         step={step}

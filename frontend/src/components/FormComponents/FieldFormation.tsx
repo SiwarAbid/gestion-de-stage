@@ -13,19 +13,16 @@ interface FieldFormationProps {
   divCount: number;
   ajouterDiv: () => void;
   supprimer: (button: HTMLButtonElement) => void;
-  errors: {
-    niveau?: boolean,
-    diplome?: boolean,
-    specialite?: boolean,
-    universite?: boolean,
-    date_debut?: boolean,
-  };
+  // errors: {
+  //   niveau?: boolean;
+  //   diplome?: boolean;
+  //   specialite?: boolean;
+  //   universite?: boolean;
+  //   date_debut?: boolean;
+  // };
 }
 
-
-const FieldFormation = (
- props: FieldFormationProps, {supprimer}
-) => {
+const FieldFormation = (props: FieldFormationProps, { supprimer }) => {
   return (
     <fieldset
       style={{ display: props.step === 2 ? "block" : "none" }}
@@ -35,29 +32,29 @@ const FieldFormation = (
       <h3 className="fs-subtitle">Vos études && Vos diplômes ..</h3>
       {Array.from({ length: props.divCount }, (_, index) => (
         <div key={index}>
-          <Form.Item
+          {/* <Form.Item
             validateStatus={
               props.errors.niveau === undefined || props.errors.niveau === true
                 ? "error"
                 : ""
             }
             help={
-              props.errors.niveau === true
-                ? "Veuillez entrer votre niveau"
-                : ""
+              props.errors.niveau === true ? "Veuillez entrer votre niveau" : ""
             }
           >
-            <Input
-              type="text"
-              name="formation.niveau"
-              placeholder="Niveau"
-              onChange={props.handleChange}
-            />
-          </Form.Item>
+            <Input */}
+          <input
+            type="text"
+            name="formation.niveau"
+            placeholder="Niveau"
+            onChange={props.handleChange}
+          />
+          {/* </Form.Item>
 
           <Form.Item
             validateStatus={
-              props.errors.diplome === undefined || props.errors.diplome === true
+              props.errors.diplome === undefined ||
+              props.errors.diplome === true
                 ? "error"
                 : ""
             }
@@ -67,16 +64,18 @@ const FieldFormation = (
                 : ""
             }
           >
-            <Input
-              type="text"
-              name="formation.diplome"
-              placeholder="Diplôme"
-              onChange={props.handleChange}
-            />
-          </Form.Item>
+            <Input */}
+          <input
+            type="text"
+            name="formation.diplome"
+            placeholder="Diplôme"
+            onChange={props.handleChange}
+          />
+          {/* </Form.Item>
           <Form.Item
             validateStatus={
-              props.errors.specialite === undefined || props.errors.specialite === true
+              props.errors.specialite === undefined ||
+              props.errors.specialite === true
                 ? "error"
                 : ""
             }
@@ -86,16 +85,18 @@ const FieldFormation = (
                 : ""
             }
           >
-            <Input
-              type="text"
-              name="formation.specialite"
-              placeholder="Spécialité"
-              onChange={props.handleChange}
-            />
-          </Form.Item>
+            <Input */}
+          <input
+            type="text"
+            name="formation.specialite"
+            placeholder="Spécialité"
+            onChange={props.handleChange}
+          />
+          {/* </Form.Item>
           <Form.Item
             validateStatus={
-              props.errors.universite === undefined || props.errors.universite === true
+              props.errors.universite === undefined ||
+              props.errors.universite === true
                 ? "error"
                 : ""
             }
@@ -105,16 +106,18 @@ const FieldFormation = (
                 : ""
             }
           >
-            <Input
-              type="text"
-              name="formation.universite"
-              placeholder="Université"
-              onChange={props.handleChange}
-            />
-          </Form.Item>
+            <Input */}
+          <input
+            type="text"
+            name="formation.universite"
+            placeholder="Université"
+            onChange={props.handleChange}
+          />
+          {/* </Form.Item>
           <Form.Item
             validateStatus={
-              props.errors.date_debut === undefined || props.errors.date_debut === true
+              props.errors.date_debut === undefined ||
+              props.errors.date_debut === true
                 ? "error"
                 : ""
             }
@@ -124,13 +127,14 @@ const FieldFormation = (
                 : ""
             }
           >
-            <Input
-              type="date"
-              name="formation.date_debut"
-              placeholder="Date début"
-              onChange={props.handleChange}
-            />
-          </Form.Item>
+            <Input */}
+          <input
+            type="date"
+            name="formation.date_debut"
+            placeholder="Date début"
+            onChange={props.handleChange}
+          />
+          {/* </Form.Item> */}
 
           <input
             type="date"
@@ -159,11 +163,11 @@ const FieldFormation = (
       <input
         type="button"
         name="next"
-        disabled={
-          Object.values(props.errors).length === 0
-            ? true
-            : Object.values(props.errors).some((error) => error)
-        }
+        // disabled={
+        //   Object.values(props.errors).length === 0
+        //     ? true
+        //     : Object.values(props.errors).some((error) => error)
+        // }
         className="next action-button"
         value="Suivant"
         onClick={props.nextStep}

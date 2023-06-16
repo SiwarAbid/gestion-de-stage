@@ -29,11 +29,32 @@ const FieldSkill = ({
         name="file.cv"
         data-caption="cv"
         onChange={handleChange}
+        title="Votre CV"
       />
-      <input type="file" name="file.demande" onChange={handleChange} />
-      <input type="file" name="file.motv" onChange={handleChange} />
-      <input type="file" name="file.insc" onChange={handleChange} />
-      <input type="file" name="file.cin" onChange={handleChange} />
+      <input
+        type="file"
+        name="file.demande"
+        onChange={handleChange}
+        title="Votre DEMANDE DE STAGE"
+      />
+      <input
+        type="file"
+        name="file.motv"
+        onChange={handleChange}
+        title="Votre LETTRE DE MOTIVATION"
+      />
+      <input
+        type="file"
+        name="file.insc"
+        onChange={handleChange}
+        title="Votre CARTE D'ETUDIANT "
+      />
+      <input
+        type="file"
+        name="file.cin"
+        onChange={handleChange}
+        title="Votre CARTE CIN"
+      />
 
       <input
         type="button"

@@ -55,7 +55,7 @@ body {
 #msform textarea,
 select {
   padding: 15px;
-  border: 1px solid rgb(49, 49, 87);
+  border: 1px solid #ccc;
   border-radius: 3px;
   margin-bottom: 10px;
   width: 100%;
@@ -220,3 +220,12 @@ label:hover {
   color: #000;
   cursor: pointer;
 }
+
+/*** Message Error ***/
+/* 
+.errror-massage {
+  display: block;
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+} */
