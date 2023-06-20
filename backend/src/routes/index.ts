@@ -8,6 +8,8 @@ import { PORT, HOST } from "@root";
 import { router } from "@routes/example";
 import { routerUser } from "@routes/user/userRouter";
 //import pool from "../Database/index";
+import { routerPost } from "@routes/posts";
+//import { delUsers } from "@controllers/index";
 
 export default (app: Application) => {
     const options = {
@@ -36,8 +38,10 @@ export default (app: Application) => {
     app.use("/api/v1/docs", swaggerUI.serve, swaggerUI.setup(specs));
 
     app.get("/", (_, res) => {
-        res.json({ message: "API Running ! " });
+   res.json({ message: "API Running ! " });
     });
+
+
 
     app.use("/api/v1", [router]);
     app.use("/", [routerUser]);
@@ -74,4 +78,5 @@ export default (app: Application) => {
     //         console.error(err.message);
     //     }
     // });
+    app.use("/api/v2", [routerPost]);
 };

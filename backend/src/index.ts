@@ -6,6 +6,7 @@ import "./modulesAliasConfig";
 
 import registerRouter from "@routes/index";
 
+
 const app: Application = express();
 
 app.use(json());

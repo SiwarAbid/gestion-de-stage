@@ -27,4 +27,7 @@ exampleRouter.route("/exampleRouter").get(indexController);
  *
  *
  */
+
+exampleRouter.route("/exampleRouter").get(indexController);
+
 export { exampleRouter };
