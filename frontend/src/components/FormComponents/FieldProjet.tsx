@@ -9,14 +9,12 @@ const FieldProjet = ({
   supprimer,
   divCount,
   handleChange,
-  handleSubmit,
   ajouterDiv,
 }) => {
   return (
     <fieldset
       style={{ display: step === 4 ? "block" : "none" }}
       name="projet"
-      onSubmit={handleSubmit}
     >
       {Array.from({ length: divCount }, (_, index) => (
         <div key={index}>

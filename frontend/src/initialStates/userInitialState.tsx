@@ -1,4 +1,5 @@
 export const initialState = {
+  id: "",
   name: "",
   email: "",
   phone: "",
@@ -7,12 +8,16 @@ export const initialState = {
   projets: [],
   skill: "",
   file: {},
+  status: "Demande en cours",
+  role: "stagiaire",
+  isAdmin: false,
+  password: "",
 };
 
 type Action =
-  | { type: "UPDATE_FIELD", field: string, value: string }
-  | { type: "MODIFIER_IMBRIQUE", parent: string, child: string, value: string }
-  | { type: "ADD_ITEM", section: string, value: any };
+  | { type: "UPDATE_FIELD"; field: string; value: string }
+  | { type: "MODIFIER_IMBRIQUE"; parent: string; child: string; value: string }
+  | { type: "ADD_ITEM"; section: string; value: any };
 
 export default function userDataReducer(state: any, action: Action) {
   console.log(action);

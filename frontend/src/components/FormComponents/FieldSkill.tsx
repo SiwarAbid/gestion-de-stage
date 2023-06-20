@@ -6,12 +6,10 @@ const FieldSkill = ({
   prevStep,
   step,
   handleChange,
-  handleSubmit,
 }) => {
   return (
     <fieldset
       style={{ display: step === 5 ? "block" : "none" }}
-      onSubmit={handleSubmit}
     >
       <h2 className="fs-title">Compétences</h2>
       <h3 className="fs-subtitle">Quoi d'autre ?</h3>

@@ -1,50 +1,181 @@
-import pool from "../Database/index"; // Importez le module de connexion à la base de données
+import pool from "../Database/index";
 
 export const get_all_user = async () => {
     try {
-        const result = await pool.query("SELECT * FROM users");
-        // console.log(result.rows);
+        const result = await pool.query(
+            "SELECT * FROM users",
+            (error, response) => {
+                console.log(
+                    "error message into get all users: ",
+                    error.message
+                );
+                return response;
+            }
+        );
         return result.rows;
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
     }
 };
 
-export const get_user = async (id: number) => {
+export const get_user_by_id = async (id: number) => {
     try {
-        const result = await pool.query(`SELECT * FROM users WHERE id=${id}`);
+        const result = await pool.query(
+            `SELECT * FROM users WHERE id=${id}`,
+            (error, response) => {
+                console.log(
+                    "error message into get user by id: ",
+                    error.message
+                );
+                return response;
+            }
+        );
+        return result;
+    } catch (error) {
+        console.error(error.message);
+    }
+};
+
+export const get_satgiaire = async () => {
+    try {
+        const result = await pool.query(
+            `SELECT * FROM users WHERE role='stagiaire'`
+            //,
+            // (error, response) => {
+            //     console.log(
+            //         "error message into get stagiaire: ",
+            //         error.message
+            //     );
+            //     return response;
+            // }
+        );
         //console.log(result.rows);
         return result;
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
+    }
+};
+
+/**
+ * error undefined & result undefined !!
+ * @returns
+ */
+export const get_satgiaire_demande = async () => {
+    try {
+        const sql = `SELECT * FROM users WHERE role='stagiaire' AND status = 'Demande en cours';`;
+        const result = await pool.query(
+            sql
+            //     , (error: any, response: any) => {
+            //     console.log("error message into get stagaire demande: ", error);
+            //     //console.error(error.message);
+
+            //     return response;
+            // }
+        );
+        //console.log("sql: ", sql);
+        //console.log(result.rows);
+        return result;
+    } catch (error) {
+        console.log(
+            "error message catch into get stagaire demande: ",
+            error.message
+        );
+        console.error(error.message);
+    }
+};
+
+export const get_satgiaire_active = async () => {
+    try {
+        const result = await pool.query(
+            `SELECT * FROM users WHERE role='stagiaire' and status = 'en cours de stage';`,
+            (error, response) => {
+                console.log(
+                    "error message get stagaire active: ",
+                    error.message
+                );
+                return response;
+            }
+        );
+        return result;
+    } catch (error) {
+        console.error(error.message);
+    }
+};
+
+export const get_satgiaire_archive = async () => {
+    try {
+        const result = await pool.query(
+            `SELECT * FROM users WHERE role='stagiaire' and status = 'archivé';`,
+            (error, response) => {
+                console.log(
+                    "error message into get stagaire archive: ",
+                    error.message
+                );
+                return response;
+            }
+        );
+        return result;
+    } catch (error) {
+        console.error(error.message);
+    }
+};
+
+export const get_satgiaire_refuse = async () => {
+    try {
+        const result = await pool.query(
+            `SELECT * FROM users WHERE role='stagiaire'and status = 'refusé';`,
+            (error, response) => {
+                console.log(
+                    "error message get stagaire refuse: ",
+                    error.message
+                );
+                return response;
+            }
+        );
+        return result;
+    } catch (error) {
+        console.error(error.message);
+    }
+};
+
+export const get_satgiaire_accepte = async () => {
+    try {
+        const result = await pool.query(
+            `SELECT * FROM users WHERE role='stagiaire'and status = 'accepté';`,
+            (error, response) => {
+                console.log(
+                    "error message get stagaire accepte: ",
+                    error.message
+                );
+                return response;
+            }
+        );
+        return result;
+    } catch (error) {
+        console.error(error.message);
     }
 };
 
 type User = {
     id: number;
-    username: string;
+    name: string;
     email: string;
     password: string;
-    userphone: number;
+    phone: number;
     role: "satagiaire" | "admin" | "encadreur";
-    status: "refusé" | "accepté" | "en cours de stage" | "archivé" | null;
+    status: string | null;
     isAdmin: Boolean;
 };
 
 export const add_user = async (user: User) => {
     try {
-        const sql = `INSERT INTO users(id, username, email, password, userphone, role, status, isadmin)
-        VALUES (${user.id}, ${user.username}, ${user.email} , ${user.password} , ${user.userphone} , ${user.role} , ${user.status} , ${user.isAdmin});`;
-        // console.log("user log:", user);
-        // console.log("sql log:", sql);
-        const result = await pool.query(
-            sql
-            //     (error, response) => {
-            //     console.log("error query: ", error.message);
-            //     return response;
-            // }
-        );
+        const sql = `INSERT INTO users(username, email, password, userphone, role, status, isadmin)
+        VALUES ('${user.name}', '${user.email}' , '${user.password}' , ${user.phone} , '${user.role}' , '${user.status}' , false );`;
 
+        const result = await pool.query(sql, (error, response) => {
+            console.log("error message add user: ", error.message);
+            return response;
+        });
         return result;
     } catch (error) {
         console.error(error);
@@ -53,12 +184,18 @@ export const add_user = async (user: User) => {
 
 export const delete_user = async (id: number) => {
     try {
-        const result = await pool.query(`DELETE FROM users WHERE id=${id}`);
+        const result = await pool.query(
+            `DELETE FROM users WHERE id=${id}`,
+            (error, response) => {
+                console.log("error message delete user: ", error.message);
+                return response;
+            }
+        );
         console.log(result.rows);
 
         return "success";
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
     }
 }; //
 
@@ -66,12 +203,33 @@ export const update_user = async (id: number, user: User) => {
     try {
         const result = await pool.query(
             //
-            `UPDATE users SET username = ${user.username} , email = ${user.email},password = ${user.password}, userphone = ${user.userphone},role = ${user.role}, status = ${user.status}, isadmin = ${user.isAdmin} WHERE id = ${id}`
+            `UPDATE users SET username = '${user.name}' , email = '${user.email}',password = '${user.password}', userphone = ${user.phone},role = '${user.role}', status = '${user.status}', isadmin = ${user.isAdmin} WHERE id = ${id}`,
+            (error, response) => {
+                console.log("error message update user: ", error.message);
+                return response;
+            }
         );
         console.log(result.rows);
 
         return "success";
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
+    }
+};
+
+export const update_status_user = async (id: number, status: string) => {
+    try {
+        const result = await pool.query(
+            //
+            `UPDATE users SET status = '${status}' WHERE id = ${id}`,
+            (error, response) => {
+                console.log("error messageupdate user status: ", error.message);
+                return response;
+            }
+        );
+        console.log(result.rows);
+        return "success";
+    } catch (error) {
+        console.error(error.message);
     }
 };

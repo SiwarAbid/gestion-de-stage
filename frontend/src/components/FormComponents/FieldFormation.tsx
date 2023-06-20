@@ -1,7 +1,7 @@
 import React from "react";
 // import "../../assets/MultiStepForm.css";
 import AjoutField from "./AjoutField";
-import { Form, Input } from "antd";
+// import { Form, Input } from "antd";
 
 interface FieldFormationProps {
   // Définir le type de chaque propriété ici
@@ -9,7 +9,6 @@ interface FieldFormationProps {
   nextStep: () => void;
   prevStep: () => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   divCount: number;
   ajouterDiv: () => void;
   supprimer: (button: HTMLButtonElement) => void;

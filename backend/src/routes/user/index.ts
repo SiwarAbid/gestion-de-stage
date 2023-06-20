@@ -1,10 +1,10 @@
+
 import express from "express";
 
 import { indexController } from "@controllers/index";
 
 const exampleRouter = express.Router();
 
-exampleRouter.route("/exampleRouter").get(indexController);
 /**
  * @swagger
  * /exampleRouter:
@@ -27,4 +27,6 @@ exampleRouter.route("/exampleRouter").get(indexController);
  *
  *
  */
+exampleRouter.route("/exampleRouter").get(indexController);
+
 export { exampleRouter };

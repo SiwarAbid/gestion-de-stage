@@ -9,7 +9,6 @@ const FieldExperience = ({
   handleTypeChange,
   selectedType,
   handleChange,
-  handleSubmit,
   supprimer,
   divCount,
   ajouterDiv,
@@ -18,7 +17,6 @@ const FieldExperience = ({
     <fieldset
       style={{ display: step === 3 ? "block" : "none" }}
       name="experience"
-      onSubmit={handleSubmit}
     >
       <h2 className="fs-title">Expérience</h2>
       <h3 className="fs-subtitle">Votre vie professionnelle</h3>

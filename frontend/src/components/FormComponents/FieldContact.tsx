@@ -7,7 +7,6 @@ interface FieldContactProps {
   step: number;
   nextStep: () => void;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   // errors: {
   //   name?: boolean;
   //   email?: boolean;

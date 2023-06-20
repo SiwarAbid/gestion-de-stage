@@ -1,5 +1,5 @@
 /* =========== Google Fonts ============ */
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+/* @import url("https://fonts.google.com/specimen/Playfair?preview.size=24"); */
 
 /* =============== Globals ============== */
 * {
@@ -16,13 +16,19 @@
   --black2: #999;
 }
 
+html {
+  min-height: 100vh;
+  background: rgb(241, 241, 245);
+  background-size: cover;
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 .container {
-  position: relative;
+  position: absolute;
   width: 100%;
 }
 
@@ -83,11 +89,8 @@ body {
   display: block;
   min-width: 60px;
   height: 60px;
-  line-height: 75px;
+  line-height: 55px;
   text-align: center;
-}
-.navigation ul li a .icon ion-icon {
-  font-size: 1.75rem;
 }
 
 .navigation ul li a .title {
@@ -100,36 +103,36 @@ body {
   white-space: nowrap;
 }
 
-/* ==================  Details List ============== */
-.details {
+/* ==================  List ============== */
+/* {
   position: relative;
   width: 100%;
   padding: 20px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 30px;
-}
+} */
 
-.details .recentOrders {
+.recentOrders {
   position: relative;
   display: grid;
-  min-height: 500px;
+  min-height: 100px;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
   margin-top: 100px;
   margin-left: 400px;
-  margin-right: -450px;
+  margin-right: 50px;
 }
 
-.details .cardHeader {
+.cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 .cardHeader h2 {
-  font-weight: 600;
+  font-weight: 50;
   color: var(--blue);
 }
 .cardHeader .btn {
@@ -141,71 +144,99 @@ body {
   border-radius: 6px;
 }
 
-.details table {
+table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 0px;
 }
-.details table thead td {
+table thead td {
   font-weight: 600;
 }
-.details .recentOrders table tr {
+.recentOrders table tr {
   color: var(--black1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  /* border-bottom: 100px solid hsla(0, 87%, 40%, 0.748); */
 }
-.details .recentOrders table tr:last-child {
+.recentOrders table tr:last-child {
   border-bottom: none;
 }
-.details .recentOrders table tbody tr:hover {
+
+.person-details {
+  position:absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.person:hover .person-details {
+  opacity: 1;
+  visibility: visible;
+}
+/* .recentOrders table tbody tr:hover {
   background: var(--blue);
   color: var(--white);
-}
-.details .recentOrders table tr td {
+} */
+.recentOrders table tr td {
   padding: 10px;
 }
-.details .recentOrders table tr td:last-child {
+.recentOrders table tr td:last-child {
   text-align: end;
 }
-.details .recentOrders table tr td:nth-child(2) {
+.recentOrders table tr td:nth-child(2) {
   text-align: end;
 }
-.details .recentOrders table tr td:nth-child(3) {
+.recentOrders table tr td:nth-child(3) {
   text-align: center;
 }
-.status.delivered {
-  padding: 2px 4px;
+.acceptee {
+  padding: 4px 4px;
   background: #8de02c;
   color: var(--white);
-  border-radius: 4px;
+  border-radius: 15px;
   font-size: 14px;
   font-weight: 500;
 }
-.status.pending {
-  padding: 2px 4px;
+.demandee {
+  padding: 4px 4px;
   background: #e9b10a;
   color: var(--white);
-  border-radius: 4px;
+  border-radius: 15px;
   font-size: 14px;
   font-weight: 500;
 }
-.status.return {
-  padding: 2px 4px;
-  background: #f00;
+.archivee {
+  padding: 4px 4px;
+  background: rgb(113, 111, 111);
   color: var(--white);
-  border-radius: 4px;
+  border-radius: 15px;
   font-size: 14px;
   font-weight: 500;
 }
-.status.inProgress {
-  padding: 2px 4px;
+.encours {
+  padding: 4px 4px;
   background: #1795ce;
   color: var(--white);
-  border-radius: 4px;
+  border-radius: 15px;
   font-size: 14px;
   font-weight: 500;
 }
 
-.effect {
+.refusee {
+  padding: 4px 4px;
+  background: #ff0505;
+  color: var(--white);
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* .effect {
   color: var(--blue);
 }
 .effect::after,
@@ -226,7 +257,7 @@ body {
   border-top-color: transparent;
   border-left-color: transparent;
   border-bottom-color: var(--blue);
-  border-right-color:var(--blue);
+  border-right-color: var(--blue);
 }
 
 .effect::before {
@@ -246,7 +277,7 @@ body {
   border-left-color: var(--blue);
   width: 100%;
   height: 100%;
-}
+} */
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
@@ -258,17 +289,17 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .details {
+/* @media (max-width: 768px) {
+   {
     grid-template-columns: 1fr;
   }
   .recentOrders {
     overflow-x: auto;
   }
-  .status.inProgress {
+  .inProgress {
     white-space: nowrap;
   }
-}
+} */
 
 @media (max-width: 480px) {
   .navigation {
@@ -280,4 +311,17 @@ body {
     width: 100%;
     left: 0;
   }
+}
+
+.custom-textarea {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.custom-textarea:focus {
+  border-color: #007bff;
 }
