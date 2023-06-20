@@ -60,29 +60,46 @@ export const get_satgiaire = async () => {
  * error undefined & result undefined !!
  * @returns
  */
-export const get_satgiaire_demande = async () => {
-    try {
-        const sql = `SELECT * FROM users WHERE role='stagiaire' AND status = 'Demande en cours';`;
-        const result = await pool.query(
-            sql
-            //     , (error: any, response: any) => {
-            //     console.log("error message into get stagaire demande: ", error);
-            //     //console.error(error.message);
+export const get_satgiaire_demande = (): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        const sql = `SELECT * FROM users WHERE role='stagiaire' AND status = 'Demande en cours';`; // Votre requête SQL ici
 
-            //     return response;
-            // }
-        );
-        //console.log("sql: ", sql);
-        //console.log(result.rows);
-        return result;
-    } catch (error) {
-        console.log(
-            "error message catch into get stagaire demande: ",
-            error.message
-        );
-        console.error(error.message);
-    }
+        pool.query(sql, (error: any, response: any) => {
+            if (error) {
+                console.log("Error executing query:", error);
+                reject(error); // Rejette la promesse en cas d'erreur
+            } else {
+                console.log("Query result:", response.rows);
+                resolve(response.rows); // Résout la promesse avec les résultats de la requête
+            }
+        });
+    });
 };
+
+//  async () => {
+//     //let data = [];
+//     try {
+//         const sql = `SELECT * FROM users WHERE role='stagiaire' AND status = 'Demande en cours';`;
+//         const data = await pool.query(
+//             sql
+            //     , (err: any, res: any) => {
+            //     if (err) {
+            //         return err;
+            //     }
+            //     // console.log("resss", res);
+            //     return res.rows;
+            // }
+//         );
+//         console.log("sql: ", data);
+//         return data;
+//     } catch (error) {
+//         console.log(
+//             "error message catch into get stagaire demande: ",
+//             error.message
+//         );
+//         console.error(error.message);
+//     }
+// };
 
 export const get_satgiaire_active = async () => {
     try {

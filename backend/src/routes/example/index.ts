@@ -1,5 +1,5 @@
-import express from "express";
+// import express from "express";
 
-import { exampleRouter } from "./exampleRouter";
+// import { exampleRouter } from "./exampleRouter";
 
-export const router = express.Router().use(exampleRouter);
+// export const router = express.Router().use(exampleRouter);

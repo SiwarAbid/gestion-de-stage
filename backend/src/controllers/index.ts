@@ -1,5 +1,4 @@
-// import { error } from "console";
-import { RequestHandler, Response } from "express";
+import { Response } from "express";
 import {
     get_all_user,
     add_user,
@@ -12,9 +11,6 @@ import {
 import pool from "../Database/index"
 import jwt from "jsonwebtoken"
 
-export const indexController: RequestHandler = (_, response: Response) => {
-    response.send("");
-};
 export async function addUser(request: any, response: Response) {
     try {
         const data = request.body;
@@ -49,7 +45,8 @@ export async function getStagiaire(_: any, response: Response) {
 export async function getStagiaireDemandee(_: any, response: Response) {
     try {
         const res = await get_satgiaire_demande();
-        return response.status(200).json({ result: res.rows });
+        console.log("res: ", res);
+        return response.status(200).json({ result: res });
     } catch (error) {
         console.error("Failed to get stagiaire demandée:", error.message);
         return response

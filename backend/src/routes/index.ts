@@ -5,7 +5,7 @@ import swaggerUI from "swagger-ui-express";
 
 import { PORT, HOST } from "@root";
 
-import { router } from "@routes/example";
+// import { router } from "@routes/example";
 import { routerUser } from "@routes/user/userRouter";
 //import pool from "../Database/index";
 import { routerPost } from "@routes/posts";
